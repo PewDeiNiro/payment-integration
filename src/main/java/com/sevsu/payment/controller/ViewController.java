@@ -54,6 +54,8 @@ public class ViewController {
         }
 
         model.addAttribute("id", invoice.getId());
+        model.addAttribute("amount", invoice.getAmount());
+        model.addAttribute("title", invoice.getTitle());
         model.addAttribute("status", status);
         model.addAttribute("cardDetails", new CardDetails());
         return "payment-page";
