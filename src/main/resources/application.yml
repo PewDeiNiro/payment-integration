@@ -1,0 +1,12 @@
+server:
+  port: ${PORT:8091}
+
+services:
+  intercity-delivery:
+    url: ${SERVICE_INTERCITY_DELIVERY_URL:http://localhost:8090/api}
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/interdel
+    username: root
+    password: bestuser
