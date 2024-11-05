@@ -11,7 +11,10 @@ import com.sevsu.payment.request.UpdatePaymentRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Optional;
@@ -57,7 +60,7 @@ public class ViewController {
     }
 
     @PostMapping("/invoice/{id}")
-    public RedirectView payInvoice(@PathVariable int id, @ModelAttribute("cardDetails") CardDetails details, Model model) {
+    public RedirectView payInvoice(@PathVariable int id, @ModelAttribute("cardDetails") CardDetails details) {
         if (!details.getNumber().replaceAll(" ", "").equals("5124585563456201")
                 || !details.getExpire().replaceAll(" ", "").equals("01/25")
                 || !details.getCvv().replaceAll(" ", "").equals("123")) {
