@@ -68,7 +68,7 @@ public class ViewController {
         }
         else{
             Invoice invoice = invoiceRepository.findById(id)
-                    .orElseThrow(() -> new InvoiceDoesNotExist("Платежа с таким уникальным идентификатором не существует"));
+                    .orElseThrow(InvoiceDoesNotExist::new);
             invoice.setStatus(PaymentStatus.SUCCEEDED);
             invoiceRepository.saveAndFlush(invoice);
         }

@@ -24,7 +24,7 @@ public class PaymentService {
 
     public InvoiceResponse createInvoice(CreateInvoiceRequest request) {
         if (request.getAmount() <= 0){
-            throw new AmountCanNotBeLessZeroException("Сумма платежа не может быть меньше 0");
+            throw new AmountCanNotBeLessZeroException();
         }
         Invoice invoice = invoiceMapper.mapCreateInvoiceToInvoice(request);
         invoice.setStatus(PaymentStatus.PENDING);
@@ -34,7 +34,7 @@ public class PaymentService {
 
     public InvoiceResponse getInvoiceById(int id){
         Invoice invoice = invoiceRepository.findById(id)
-                .orElseThrow(() -> new InvoiceDoesNotExist("Платежа с таким уникальным идентификатором не существует"));
+                .orElseThrow(InvoiceDoesNotExist::new);
         return invoiceMapper.mapInvoiceToInvoiceResponse(invoice);
     }
 
